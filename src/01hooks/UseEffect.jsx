@@ -1,8 +1,13 @@
 import React from 'react';
 import {useState,useEffect} from 'react'
+import axios from 'axios'
 
 function CountEffect(props){
     const [data,setCount] = useState({count:0})
+
+    const loadData = ()=>{
+        return axios.get("api/manage/user/list")
+    }
 
     function handleClick(){
         // setCount({count:2})
@@ -25,6 +30,22 @@ function CountEffect(props){
             console.log("unmount")
         }
     },[]) // data变化，会重新渲染
+
+    /**
+     * DiMount和WillUnmout可以放在一起使用，但是发送ajax请求的函数必须是一个函数的返回值
+     */
+
+    useEffect(()=>{
+        // 发送ajax请求
+        ;(async ()=>{
+            const result = await loadData()
+            console.log("result",result)
+        })()
+
+        return ()=>{
+            console.log("unmount")
+        }
+    },[]) 
 
     return (
         <div>
