@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+### 2. React Hooks
+#### 为什么使用React Hooks
+    1. 代码看起来简洁
+    2. React Class的生命周期难以理解
+    3. 组件化思维
+    4. Redux状态管理，概念多，比较难以理解，可以用useContext+useReducer替代redux，而useSelector和useDispatch可以替代connect，但是没有必要
+    5. 高阶组件理解起来不太容易
+    6. 函数组件可以和Tyscript结合，更加简单，不需要写类组件
+#### React Hooks的函数集合及其作用
+    1. useState：相当于class组件中的state和setState，有setState所有的特性，个人觉得改进并不是多大
+    2. useEffect：改进比较大，相当于class组件的生命周期函数
+        1) 你可以把 useEffect Hook 看做 componentDidMount，componentDidUpdate 和 componentWillUnmount 这三个函数的组合
+        2）useEffect(()=>{
+        console.log("effect111")
+    },[]) // 空数组表示，不依赖任何值更新，只做一次，相当于DidMount
+        3) 可以依赖数组中数据的变化，进行更新
+        4）/**
+     * DiMount和WillUnmout可以放在一起使用，但是发送ajax请求的函数必须是一个函数的返回值
+     */
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+    useEffect(()=>{
+        // 发送ajax请求
+        ;(async ()=>{
+            const result = await loadData()
+            console.log("result",result)
+        })()
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+        return ()=>{
+            console.log("unmount")
+        }
+    },[]) 
+    3. UseContext：与类组件差不多，使用useContext有诸多好处，用于全局的声明，比如主题颜色，语言首选项等。
+    用法：
+    1)声明：let themeContext = createContext({ theme: 'green' })
+    2）包裹组件：<nameContext.Provider value={{name:'zhongxing'}}>
+            <ToolBar />
+        </nameContext.Provider>
+    3）在子组件中使用 let theme = useContext(themeContext)
+    4. useCallback记忆函数体和useMemo 记忆计算结果
+    5. useReducer，其实就是用redux的方法进行管理state
+    6. useRef、useImperativeHandle可以让我们在使用ref时自定义暴露给父组件的实例值、forwardRef
+    7. 自定义Hooks组件
