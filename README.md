@@ -1,4 +1,4 @@
-### 2. React Hooks
+###  React Hooks
 #### 为什么使用React Hooks
     1. 代码看起来简洁
     2. React Class的生命周期难以理解
@@ -11,30 +11,30 @@
     2. useEffect：改进比较大，相当于class组件的生命周期函数
         1) 你可以把 useEffect Hook 看做 componentDidMount，componentDidUpdate 和 componentWillUnmount 这三个函数的组合
         2）useEffect(()=>{
-        console.log("effect111")
-    },[]) // 空数组表示，不依赖任何值更新，只做一次，相当于DidMount
+            console.log("effect111")
+            },[]) // 空数组表示，不依赖任何值更新，只做一次，相当于DidMount
         3) 可以依赖数组中数据的变化，进行更新
         4）/**
-     * DiMount和WillUnmout可以放在一起使用，但是发送ajax请求的函数必须是一个函数的返回值
-     */
+        * DiMount和WillUnmout可以放在一起使用，但是发送ajax请求的函数必须是一个函数的返回值
+        */
 
-    useEffect(()=>{
-        // 发送ajax请求
-        ;(async ()=>{
-            const result = await loadData()
-            console.log("result",result)
+        useEffect(()=>{
+            // 发送ajax请求
+            ;(async ()=>{
+                const result = await loadData()
+                console.log("result",result)
         })()
 
         return ()=>{
             console.log("unmount")
         }
-    },[]) 
+        },[]) 
     3. UseContext：与类组件差不多，使用useContext有诸多好处，用于全局的声明，比如主题颜色，语言首选项等。
     用法：
     1)声明：let themeContext = createContext({ theme: 'green' })
     2）包裹组件：<nameContext.Provider value={{name:'zhongxing'}}>
-            <ToolBar />
-        </nameContext.Provider>
+                    <ToolBar />
+                </nameContext.Provider>
     3）在子组件中使用 let theme = useContext(themeContext)
     4. useCallback记忆函数体和useMemo 记忆计算结果
     5. useReducer，其实就是用redux的方法进行管理state
