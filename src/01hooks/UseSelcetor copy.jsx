@@ -47,8 +47,7 @@ const count1 = (state = initialCount, action) => {
 
 const reducer = combineReducers({
   // user,
-  count,
-  count1
+  count
 })
 
 // console.log("reducer",reducer)
@@ -71,9 +70,9 @@ const ComponentUseReactRedux = () => {
 const ChildComponentUseReactRedux = () => {
   const {num} = useSelector(state => state.count);
   // const {userdata} = useSelector(state => state.user);
-  const {num1} = useSelector(state => state.count1);
+  // const {num1} = useSelector(state => state.count1);
   console.log("num",num)
-  console.log("num1",num1)
+  // console.log("num1",num1)
   // console.log("user",userdata)
   const dispatch = useDispatch();
   return (

@@ -8,18 +8,24 @@ import UseContext from './01hooks/UseContext'
 
 import UseReducer from './01hooks/useReducers'
 import ComponentUseReactRedux from './01hooks/Function-connnect'
+import UseCallBack from './01hooks/useCallBack'
+import UseMemo from './01hooks/useMemo'
+import UseRef from './01hooks/useRef'
 
 export default class App extends React.Component{
     render(){
         return (
             <div>
-                <Counter/>
+                {/* <Counter/>
                 <CountEffect/>
                 <ContextNoOne/>
                 <ContextNoTwo/>
                 <UseContext/>
                 <UseReducer/>
-                <ComponentUseReactRedux/>
+                <ComponentUseReactRedux/> */}
+                {/* <UseCallBack/> */}
+                {/* <UseMemo/> */}
+                <UseRef/>
             </div>
         )
     }
